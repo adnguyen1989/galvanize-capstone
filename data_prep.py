@@ -42,7 +42,7 @@ class DataPrep(object):
 directory = 'data'
 joint_out = 'data/uber.csv'
 ride_distribution_out = 'processed/ride_distribution.csv'
-loc = ['Lat', 'Lon','Weekend','TOD']
+loc = ['Lat', 'Lon','DOW','TOD']
 
 dp = DataPrep(directory)
 dp.fit()
