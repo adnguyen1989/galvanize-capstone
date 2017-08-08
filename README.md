@@ -1,38 +1,57 @@
-# galvanize-capstone
+## Project Goal
 
-## Step 1:
+To build a high-fidelity ride-share simulation.
 
-Concatenate raw data
+## Learning Goal
 
-## Step 2:
+1. Understand the ride-share industry.
+2. Apply predictive machine learning on actual data.
+3. Handle unknown data / cold-start problem.
+4. Practice good software engineering principles.
 
-Generate historical demand. This is consistent with what Uber seems to suggest [here](https://newsroom.uber.com/semi-automated-science-using-an-ai-simulation-framework/):
+## Project Description
 
->More sophisticated simulations don’t assume spatial or temporal distributions of passengers, drivers, or their destinations. Instead they randomly pull from the empirical distributions based on historical demand patterns.
+In many cases, A/B testing in live traffic is either impractical, unethical or impossible. A high-fidelity simulation addresses these issues by allowing the evaluation of different algorithms to take inside a simulated environment.
 
---
+This project's goal is to create a simulation for the ride-share industry with the following characteristics:
 
-`run ride_distribution.py`
+|Agent|Action|
+|---|---|
+|Rider|Sign On|
+||Request Ride|
+|Driver|Sign On|
+||Accept Ride|
+||Sign Off|
+|Algorithm|Dispatch
+|Evaluation|Median Pickup Time|
+||Fulfillment Rate
+||Dropout Rate
 
-`df` is a data-frame containing trip count for each combination of:
+\*  if time permits
 
-- lat: latitude
-- lon: longitude
-- weekend: 0 for weekday, 1 for weekend
-- TOD: time of day
+## Project Evaluation
 
-|index|      Lat|      Lon|  Weekend|  TOD | Count |
-|---|---|---|---|---|---|
-|     230839|  40.7635| -73.9805|        0|    8|      3|
-|...|
+### Accuracy
 
-RideDistribution is a class that take random samples with replacement from `df`, given weekend and TOD
+A simulation is only useful as far as it gives similar results to reality. At a minimum, the simulation should give directionally accurate results, i.e. the relative magnitude of the baseline and treatment results should be the same as in production.
 
-So for example `rd.sample(0, 8, num=30)` would return 30 samples for 8am on a weekday.
+Since we do not have actual data, a few contrived dispatch algorithms will be tested to ensure that the simulation results agree with expectations.
 
+### Flexibility
 
-## Next step:
+A simulation should allow the users to quickly and easily run experiments. It should accomplish this by abstracting the algorithm layer from the simulation base, allowing the users to specify custom algorithm functions to be used against the base.  
 
-Now that we know how to take individual samples using historical demand pattern, how do we actually simulate the random process of rides being requested?
+## Data
 
-I assume that the simulation elapses over time, so there should be some sort of trigger for when a new request is to be sampled. How do we model this trigger? Use linear regression to predict the number of rides in the next hour and then Poisson?
+A lot of data is necessary to make a simulation accurate, among them:
+- Rider sign-ons
+- Rider information
+- Initial ETA given versus actual requests
+- Driver sign-ons
+- Match given versus actual driver accepts
+- Driver sign-offs
+- Driver information
+
+Unfortunately, only actual ride pickup data are available publicly, so dummy data generation is required for the simulation.
+
+Practically speaking, this would negate any discussion for the actual accuracy of the simulation. However, a simulation should ideally be able update itself based on new data or even a completely different set of data, so there is still a lot of meaning to working with dummy data.
