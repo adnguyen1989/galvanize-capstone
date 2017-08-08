@@ -5,10 +5,10 @@ class RideDistribution(object):
     def __init__(self, df):
         self.df = df
 
-    def sample(self, weekend, TOD, num=1):
+    def sample(self, DOW, TOD, num=1):
         df = self.df
         # import ipdb; ipdb.set_trace()
-        samples = df[(df.Weekend == weekend) & (df.TOD == TOD)].reset_index()
+        samples = df[(df.DOW == DOW) & (df.TOD == TOD)].reset_index()
         total_ride_count = float(samples['Count'].sum())
         x = samples.shape[0]
         y = samples['Count'] / total_ride_count
