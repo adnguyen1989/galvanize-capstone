@@ -27,7 +27,7 @@ This project's goal is to create a simulation for the ride-share industry with t
 ||Fulfillment Rate
 ||Dropout Rate
 
-\*  if time permit
+\*  if time permits
 
 ## Project Evaluation
 
@@ -52,6 +52,6 @@ A lot of data is necessary to make a simulation accurate, among them:
 - Driver sign-offs
 - Driver information
 
-Unfortunately, only actual ride pickup data are available, so we need to generate dummy data to use for the simulation.
+Unfortunately, only actual ride pickup data are available publicly, so dummy data generation is required for the simulation.
 
-Practically speaking, this would negate any discussion for the actual accuracy of the simulation. A simulation should ideally be able update itself based on new data or even a completely different set of data, so there is still a lot of meaning to working with dummy data.
+Practically speaking, this would negate any discussion for the actual accuracy of the simulation. However, a simulation should ideally be able update itself based on new data or even a completely different set of data, so there is still a lot of meaning to working with dummy data.
